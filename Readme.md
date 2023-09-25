@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть»
 
 * Студент: [Арсений Беляев](https://up.htmlacademy.ru/univer-js3/2/user/1157871).
-* Наставник: [Глеб Грецков](https://htmlacademy.ru/profile/id1487865).
+* Наставник: [Глеб Клецков](https://htmlacademy.ru/profile/id1487865).
 
 ---
 

@@ -14,6 +14,8 @@ module.exports = {
   plugins: ['react-refresh'],
   rules: {
     'react-refresh/only-export-components': 'warn',
+    'no-console': 'warn',
+    'react/no-array-index-key': 'warn',
     '@typescript-eslint/member-delimiter-style': [
       'error',
       {

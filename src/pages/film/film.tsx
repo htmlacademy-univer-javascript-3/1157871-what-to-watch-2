@@ -4,6 +4,7 @@ import {Footer} from 'src/components/footer';
 import {FilmsList} from 'src/components/films-list';
 import {MyListButton, PlayButton} from 'src/components/buttons';
 import {RoutePathname} from 'src/constants';
+import {Tabs} from 'src/components/tabs';
 import {TFilmCard} from 'src/types';
 
 
@@ -18,17 +19,15 @@ export function Film(props: Props) {
   if (!film) {
     return <Navigate to={`/${RoutePathname.NOT_FOUND}`}/>;
   }
+  const moreLikeFilms = films
+    .filter((f) => f.genre === film.genre && f.id !== film.id)
+    .slice(0, 4);
   const {
     title,
     preview,
     genre,
     year,
-    poster,
-    raiting,
-    numberOfRatings,
-    director,
-    starring,
-    description
+    poster
   } = film;
   return (
     <>
@@ -65,31 +64,7 @@ export function Film(props: Props) {
               <img src={poster} alt={`${title} poster`} width="218" height="327"/>
             </div>
             <div className="film-card__desc">
-              <nav className="film-nav film-card__nav">
-                <ul className="film-nav__list">
-                  <li className="film-nav__item film-nav__item--active">
-                    <a href="#" className="film-nav__link">Overview</a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Details</a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
-              <div className="film-rating">
-                <div className="film-rating__score">{raiting}</div>
-                <p className="film-rating__meta">
-                  <span className="film-rating__level">Very good</span>
-                  <span className="film-rating__count">{numberOfRatings} ratings</span>
-                </p>
-              </div>
-              <div className="film-card__text">
-                <p>{description}</p>
-                <p className="film-card__director"><strong>Director: {director}</strong></p>
-                <p className="film-card__starring"><strong>Starring: {starring.join(', ')}</strong></p>
-              </div>
+              <Tabs film={film} />
             </div>
           </div>
         </div>
@@ -97,7 +72,7 @@ export function Film(props: Props) {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmsList films={films}/>
+          <FilmsList films={moreLikeFilms}/>
         </section>
         <Footer/>
       </div>

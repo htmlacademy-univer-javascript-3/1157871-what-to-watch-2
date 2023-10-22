@@ -13,6 +13,7 @@ export const filmsMocks: TFilmCard[] = [
     raiting: 1.9,
     starring: ['1Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'and other'],
     title: 'The Grand Budapest Hotel 1',
+    videoSrc: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
     year: 2011
   },
   {
@@ -26,6 +27,7 @@ export const filmsMocks: TFilmCard[] = [
     raiting: 2.9,
     starring: ['2Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'and other'],
     title: 'The Grand Budapest Hotel 2',
+    videoSrc: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
     year: 2012
   },
   {
@@ -39,6 +41,7 @@ export const filmsMocks: TFilmCard[] = [
     raiting: 3.9,
     starring: ['3Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'and other'],
     title: 'The Grand Budapest Hotel 3',
+    videoSrc: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
     year: 2013
   },
   {
@@ -52,6 +55,7 @@ export const filmsMocks: TFilmCard[] = [
     raiting: 4.9,
     starring: ['4Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'and other'],
     title: 'The Grand Budapest Hotel 4',
+    videoSrc: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
     year: 2014
   },
   {
@@ -65,6 +69,7 @@ export const filmsMocks: TFilmCard[] = [
     raiting: 5.9,
     starring: ['5Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'and other'],
     title: 'The Grand Budapest Hotel 5',
+    videoSrc: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
     year: 2015
   },
   {
@@ -78,6 +83,7 @@ export const filmsMocks: TFilmCard[] = [
     raiting: 6.9,
     starring: ['6Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'and other'],
     title: 'The Grand Budapest Hotel 6',
+    videoSrc: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
     year: 2016
   },
   {
@@ -91,6 +97,7 @@ export const filmsMocks: TFilmCard[] = [
     raiting: 7.9,
     starring: ['7Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'and other'],
     title: 'The Grand Budapest Hotel 7',
+    videoSrc: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
     year: 2017
   },
   {
@@ -104,6 +111,7 @@ export const filmsMocks: TFilmCard[] = [
     raiting: 8.9,
     starring: ['8Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'and other'],
     title: 'The Grand Budapest Hotel 8',
+    videoSrc: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
     year: 2018
   },
 ];

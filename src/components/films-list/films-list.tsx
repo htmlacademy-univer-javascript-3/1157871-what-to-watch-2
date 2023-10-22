@@ -8,15 +8,14 @@ type Props = {
 }
 
 export function FilmsList(props: Props) {
-  const [activeFilm, setActiveFilm] = useState<TFilmCard | null>(null);
   const {films} = props;
+  const [activeFilm, setActiveFilm] = useState<TFilmCard | null>(null);
   const handleMouseEnter = useCallback((film: TFilmCard) => {
     setActiveFilm(film);
   }, []);
   const handleMouseLeave = useCallback(() => {
     setActiveFilm(null);
   }, []);
-  console.log(activeFilm);
   return (
     <div className="catalog__films-list">
       {films.map((film) => (
@@ -24,6 +23,7 @@ export function FilmsList(props: Props) {
           key={film.id}
           onMouseEnter={() => handleMouseEnter(film)}
           onMouseLeave={handleMouseLeave}
+          isActive={activeFilm === film}
           {...film}
         />
       ))}

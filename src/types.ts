@@ -9,6 +9,7 @@ export type TFilmCard = {
   raiting: number,
   starring: string[],
   title: string,
+  videoSrc: string,
   year: number
 }
 

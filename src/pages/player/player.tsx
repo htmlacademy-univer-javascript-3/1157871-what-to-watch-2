@@ -1,9 +1,27 @@
-export function Player() {
+import {useCallback} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {TPlayer} from 'src/types';
+
+
+type Props = TPlayer;
+
+export function Player(props: Props) {
+  const {src} = props;
+  const navigate = useNavigate();
+  const handleExit = useCallback(() => {
+    navigate(-1);
+  }, [navigate]);
   return (
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video src={src} className="player__video" poster="img/player-poster.jpg"></video>
 
-      <button type="button" className="player__exit">Exit</button>
+      <button
+        type="button"
+        className="player__exit"
+        onClick={handleExit}
+      >
+        Exit
+      </button>
 
       <div className="player__controls">
         <div className="player__controls-row">

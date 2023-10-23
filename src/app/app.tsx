@@ -1,4 +1,7 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {Provider} from 'react-redux';
+import {store} from 'src/store';
+import {useFilms} from 'src/hooks';
 import {Main} from 'src/pages/main';
 import {SignIn} from 'src/pages/sign-in';
 import {MyList} from 'src/pages/my-list';
@@ -8,17 +11,17 @@ import {Player} from 'src/pages/player';
 import {NotFound} from 'src/pages/not-found';
 import {ScrollToTop} from 'src/components/scroll-to-top';
 import {RoutePathname} from 'src/constants';
-import {TFilmCard, TPlayer} from 'src/types';
-import {CheckAuth} from 'src//components/check-auth';
+import {CheckAuth} from 'src/components/check-auth';
+import {TPlayer} from 'src/types';
 
 
 type Props = {
-  films: TFilmCard[],
   player: TPlayer
 };
 
-export function App(props: Props) {
-  const {films, player} = props;
+function Router(props: Props) {
+  const {player} = props;
+  const films = useFilms();
   return (
     <BrowserRouter>
       <ScrollToTop>
@@ -38,7 +41,7 @@ export function App(props: Props) {
             />
             <Route
               path={`${RoutePathname.FILMS}/:id`}
-              element={<Film films={films} />}
+              element={<Film films={films}/>}
             />
             <Route
               path={`${RoutePathname.FILMS}/:id/${RoutePathname.REVIEW}`}
@@ -54,5 +57,14 @@ export function App(props: Props) {
         </Routes>
       </ScrollToTop>
     </BrowserRouter>
+  );
+}
+
+export function App(props: Props) {
+  const {player} = props;
+  return (
+    <Provider store={store}>
+      <Router player={player} />
+    </Provider>
   );
 }

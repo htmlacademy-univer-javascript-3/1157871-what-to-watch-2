@@ -131,4 +131,20 @@ export const filmsMocks: TFilmCard[] = [
     videoSrc: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
     year: 2018
   },
+  {
+    description: '9In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave&apos;s friend and protege.',
+    director: '9Wes Anderson',
+    genre: 'Drama',
+    id: '9',
+    minutes: 109,
+    numberOfRatings: 9240,
+    poster: 'img/the-grand-budapest-hotel-poster.jpg',
+    preview: 'img/bg-the-grand-budapest-hotel.jpg',
+    raiting: 9.9,
+    reviews: reviews,
+    starring: ['9Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'and other'],
+    title: 'The Grand Budapest Hotel 9',
+    videoSrc: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    year: 2019
+  }
 ];

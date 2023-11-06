@@ -1,7 +1,10 @@
+import {minutesInHour} from 'date-fns';
+
+
 export function getRunTime(minutes: number) {
-  const hours = Math.floor(minutes / 60);
+  const hours = Math.floor(minutes / minutesInHour);
   if (!hours) {
     return `${minutes}m`;
   }
-  return `${hours}h ${minutes % 60}m`;
+  return `${hours}h ${minutes % minutesInHour}m`;
 }

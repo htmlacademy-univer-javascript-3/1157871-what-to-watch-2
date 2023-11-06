@@ -1,4 +1,5 @@
 import {useEffect, useRef} from 'react';
+import {millisecondsInSecond} from 'date-fns';
 
 
 type Props = {
@@ -15,7 +16,7 @@ export function VideoPlayer(props: Props) {
       if (videoRef.current) {
         videoRef.current.play();
       }
-    }, 1000);
+    }, millisecondsInSecond);
   }, []);
 
   return (

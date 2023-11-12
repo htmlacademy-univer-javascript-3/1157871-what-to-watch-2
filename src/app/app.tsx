@@ -1,7 +1,8 @@
+import {useEffect} from 'react';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import {SnackbarProvider} from 'notistack';
-import {store} from 'src/store';
+import {store, useAppDispatch} from 'src/store';
 import {Main} from 'src/pages/main';
 import {SignIn} from 'src/pages/sign-in';
 import {MyList} from 'src/pages/my-list';
@@ -11,8 +12,9 @@ import {Player} from 'src/pages/player';
 import {NotFound} from 'src/pages/not-found';
 import {ScrollToTop} from 'src/components/scroll-to-top';
 import {RoutePathname} from 'src/constants';
-import {CheckAuth} from 'src/components/check-auth';
+import {PrivateRoute} from 'src/components/private-route';
 import {TPlayer} from 'src/types';
+import {getLogin} from 'src/store/api';
 
 
 type Props = {
@@ -21,9 +23,12 @@ type Props = {
 
 function Router(props: Props) {
   const {player} = props;
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getLogin());
+  }, [dispatch]);
   return (
     <SnackbarProvider>
-
       <BrowserRouter>
         <ScrollToTop>
           <Routes>
@@ -38,7 +43,7 @@ function Router(props: Props) {
               />
               <Route
                 path={RoutePathname.MY_LIST}
-                element={<CheckAuth><MyList/></CheckAuth>}
+                element={<PrivateRoute><MyList/></PrivateRoute>}
               />
               <Route
                 path={`${RoutePathname.FILMS}/:id`}

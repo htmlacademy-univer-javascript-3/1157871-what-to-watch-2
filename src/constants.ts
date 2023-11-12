@@ -15,4 +15,9 @@ export enum ReduxStateStatus {
   idle = 'idle'
 }
 
+export enum AuthorizationStatus {
+  notAuthorized = 'notAuthorized',
+  authorized = 'authorized'
+}
+
 export const GENRE_FOR_ALL_FILMS = 'All films';

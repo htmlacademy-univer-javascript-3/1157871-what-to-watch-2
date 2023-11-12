@@ -2,6 +2,7 @@ import {createReducer} from '@reduxjs/toolkit';
 import {GENRE_FOR_ALL_FILMS} from 'src/constants';
 import {
   changeGenre,
+  updateAuthorizationStatus,
   updateFavoriteFilms,
   updateFilm,
   updateFilmComments,
@@ -19,7 +20,8 @@ const initialState: State = {
   film: null,
   filmsSimilar: null,
   filmsComments: null,
-  favoriteFilms: null
+  favoriteFilms: null,
+  authorizationStatus: null
 };
 
 export const updateStore = createReducer(initialState, (builder) => {
@@ -44,5 +46,8 @@ export const updateStore = createReducer(initialState, (builder) => {
     })
     .addCase(updateFavoriteFilms, (state, action) => {
       state.favoriteFilms = action.payload;
+    })
+    .addCase(updateAuthorizationStatus, (state, action) => {
+      state.authorizationStatus = action.payload;
     });
 });

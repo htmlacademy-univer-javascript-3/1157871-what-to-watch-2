@@ -1,13 +1,20 @@
 import {configureStore} from '@reduxjs/toolkit';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import logger from 'redux-logger';
+import {createAPI} from 'src/api';
 import {updateStore} from './reducer';
-import {State, AppDispatch} from './types';
+import {AppDispatch, State} from './types';
 
+
+const api = createAPI();
 
 export const store = configureStore({
   reducer: updateStore,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger)
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    thunk: {
+      extraArgument: api
+    }
+  }).concat(logger)
 });
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();

@@ -8,4 +8,11 @@ export const enum RoutePathname {
   NOT_FOUND = '404'
 }
 
+export enum ReduxStateStatus {
+  pending = 'pending',
+  fulfilled = 'fulfilled',
+  rejected = 'rejected',
+  idle = 'idle'
+}
+
 export const GENRE_FOR_ALL_FILMS = 'All films';

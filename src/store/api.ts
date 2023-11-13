@@ -9,7 +9,7 @@ import {
   updatePromoFilm,
   updateAuthorizationStatus
 } from 'src/store/action';
-import {TComment, TFilm, TFilmCard, TFilmPromo, TLoginRequest, TUser} from 'src/types';
+import {TComment, TCommentRequest, TFilm, TFilmCard, TFilmPromo, TLoginRequest, TUser} from 'src/types';
 import {AppDispatch, State} from './types';
 import {deleteToken, getSavedToken, saveToken} from 'src/token';
 import {AuthorizationStatus} from 'src/constants';
@@ -132,3 +132,21 @@ export const fetchLogout = createAsyncThunk<void, undefined, {
   },
 );
 
+export const postComments = createAsyncThunk<void, TCommentRequest, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'postComments',
+  async (arg, {dispatch, extra: api}) => {
+    const {filmId, comment, rating} = arg;
+    const token = getSavedToken();
+    const {data} = await api.post<TUser>(
+      `/comments/${filmId}`,
+      {comment, rating},
+      {headers: {'X-Token': token}}
+    );
+    saveToken(data.token);
+    dispatch(updateAuthorizationStatus(AuthorizationStatus.authorized));
+  },
+);

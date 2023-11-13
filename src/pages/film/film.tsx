@@ -4,7 +4,7 @@ import {Header} from 'src/components/header';
 import {Footer} from 'src/components/footer';
 import {FilmsList} from 'src/components/films-list';
 import {MyListButton, PlayButton} from 'src/components/buttons';
-import {RoutePathname} from 'src/constants';
+import {AuthorizationStatus, RoutePathname} from 'src/constants';
 import {Tabs} from 'src/components/tabs';
 import {useAppDispatch, useAppSelector} from 'src/store';
 import {fetchFilmSimilar} from 'src/store/api';
@@ -14,7 +14,12 @@ import {useFetchFilm} from 'src/hooks';
 export function Film() {
   const {id = ''} = useParams();
   const dispatch = useAppDispatch();
-  const {film, filmsSimilar} = useAppSelector((state) => state);
+  const {
+    film,
+    filmsSimilar,
+    authorizationStatus
+  } = useAppSelector((state) => state);
+  const isAuthorized = authorizationStatus === AuthorizationStatus.authorized;
   useFetchFilm(id);
   useEffect(() => {
     dispatch(fetchFilmSimilar(id));
@@ -51,12 +56,14 @@ export function Film() {
               <div className="film-card__buttons">
                 <PlayButton/>
                 <MyListButton/>
-                <Link
-                  to={`/${RoutePathname.FILMS}/${id}/${RoutePathname.REVIEW}`}
-                  className="btn film-card__button"
-                >
-                  Add review
-                </Link>
+                {isAuthorized && (
+                  <Link
+                    to={`/${RoutePathname.FILMS}/${id}/${RoutePathname.REVIEW}`}
+                    className="btn film-card__button"
+                  >
+                    Add review
+                  </Link>
+                )}
               </div>
             </div>
           </div>

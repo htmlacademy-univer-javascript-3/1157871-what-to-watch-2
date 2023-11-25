@@ -1,8 +1,9 @@
 import {useCallback, useMemo} from 'react';
-import {useAppDispatch, useAppSelector} from 'src/store';
-import {changeGenre} from 'src/store/action';
+import {changeGenre} from 'src/store/genre/action';
 import {GENRE_FOR_ALL_FILMS} from 'src/constants';
 import {TFilmCard} from 'src/types';
+import {useAppDispatch, useAppSelector} from 'src/store/hooks';
+import {GenreSelector} from 'src/store/genre/selectors';
 import './list-of-genres.css';
 
 
@@ -12,7 +13,7 @@ type Props = {
 
 export function ListOfGenres(props: Props) {
   const {films} = props;
-  const genre = useAppSelector((state) => state.genre);
+  const genre = useAppSelector(GenreSelector.genre);
   const dispatch = useAppDispatch();
   const handleClick = useCallback(
     (currentGenre: string) => () => dispatch(changeGenre(currentGenre)),

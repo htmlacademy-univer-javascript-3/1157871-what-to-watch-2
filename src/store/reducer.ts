@@ -1,53 +1,8 @@
-import {createReducer} from '@reduxjs/toolkit';
-import {GENRE_FOR_ALL_FILMS} from 'src/constants';
-import {
-  changeGenre,
-  updateAuthorizationStatus,
-  updateFavoriteFilms,
-  updateFilm,
-  updateFilmComments,
-  updateFilms,
-  updateFilmsSimilar,
-  updatePromoFilm
-} from './action';
-import {State} from './types';
+import {combineReducers} from '@reduxjs/toolkit';
+import {authorization} from './authorization/reducer';
+import {films} from './films/reducer';
+import {film} from './film/reducer';
+import {genre} from './genre/slice';
 
 
-const initialState: State = {
-  genre: GENRE_FOR_ALL_FILMS,
-  films: null,
-  promoFilm: null,
-  film: null,
-  filmsSimilar: null,
-  filmsComments: null,
-  favoriteFilms: null,
-  authorizationStatus: null
-};
-
-export const updateStore = createReducer(initialState, (builder) => {
-  builder
-    .addCase(changeGenre, (state, action) => {
-      state.genre = action.payload;
-    })
-    .addCase(updateFilms, (state, action) => {
-      state.films = action.payload;
-    })
-    .addCase(updatePromoFilm, (state, action) => {
-      state.promoFilm = action.payload;
-    })
-    .addCase(updateFilm, (state, action) => {
-      state.film = action.payload;
-    })
-    .addCase(updateFilmsSimilar, (state, action) => {
-      state.filmsSimilar = action.payload;
-    })
-    .addCase(updateFilmComments, (state, action) => {
-      state.filmsComments = action.payload;
-    })
-    .addCase(updateFavoriteFilms, (state, action) => {
-      state.favoriteFilms = action.payload;
-    })
-    .addCase(updateAuthorizationStatus, (state, action) => {
-      state.authorizationStatus = action.payload;
-    });
-});
+export const rootReducer = combineReducers({film, films, authorization, genre});

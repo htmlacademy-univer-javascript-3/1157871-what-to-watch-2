@@ -6,19 +6,19 @@ import {FilmsList} from 'src/components/films-list';
 import {MyListButton, PlayButton} from 'src/components/buttons';
 import {AuthorizationStatus, RoutePathname} from 'src/constants';
 import {Tabs} from 'src/components/tabs';
-import {useAppDispatch, useAppSelector} from 'src/store';
-import {fetchFilmSimilar} from 'src/store/api';
+import {fetchFilmSimilar} from 'src/store/film/api';
 import {useFetchFilm} from 'src/hooks';
+import {useAppDispatch, useAppSelector} from 'src/store/hooks';
+import {FilmSelector} from 'src/store/film/selectors';
+import {AuthorizationSelector} from 'src/store/authorization/selectors';
 
 
 export function Film() {
   const {id = ''} = useParams();
   const dispatch = useAppDispatch();
-  const {
-    film,
-    filmsSimilar,
-    authorizationStatus
-  } = useAppSelector((state) => state);
+  const film = useAppSelector(FilmSelector.film);
+  const filmsSimilar = useAppSelector(FilmSelector.similar);
+  const authorizationStatus = useAppSelector(AuthorizationSelector.status);
   const isAuthorized = authorizationStatus === AuthorizationStatus.authorized;
   useFetchFilm(id);
   useEffect(() => {
@@ -58,7 +58,7 @@ export function Film() {
                 <MyListButton/>
                 {isAuthorized && (
                   <Link
-                    to={`/${RoutePathname.FILMS}/${id}/${RoutePathname.REVIEW}`}
+                    to={`/${RoutePathname.films}/${id}/${RoutePathname.review}`}
                     className="btn film-card__button"
                   >
                     Add review
@@ -74,7 +74,7 @@ export function Film() {
               <img src={posterImage} alt={`${name} poster`} width="218" height="327"/>
             </div>
             <div className="film-card__desc">
-              <Tabs film={film} />
+              <Tabs film={film}/>
             </div>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import {memo} from 'react';
 import {Link} from 'react-router-dom';
 import {TFilmCard} from 'src/types';
 import {RoutePathname} from 'src/constants';
@@ -11,7 +12,7 @@ type Props = TFilmCard & {
   isActive: boolean
 };
 
-export function FilmCard(props: Props) {
+export const FilmCard = memo((props: Props) => {
   const {
     previewImage,
     name,
@@ -40,7 +41,7 @@ export function FilmCard(props: Props) {
       </div>
       <h3 className="small-film-card__title">
         <Link
-          to={`/${RoutePathname.FILMS}/${id}`}
+          to={`/${RoutePathname.films}/${id}`}
           className="small-film-card__link"
         >
           {name}
@@ -48,4 +49,6 @@ export function FilmCard(props: Props) {
       </h3>
     </article>
   );
-}
+});
+
+FilmCard.displayName = 'FilmCard';

@@ -2,12 +2,13 @@ import {useEffect} from 'react';
 import {Header} from 'src/components/header';
 import {Footer} from 'src/components/footer';
 import {FilmsList} from 'src/components/films-list';
-import {fetchFavoriteFilms} from 'src/store/api';
-import {useAppDispatch, useAppSelector} from 'src/store';
+import {fetchFavoriteFilms} from 'src/store/films/api';
+import {useAppDispatch, useAppSelector} from 'src/store/hooks';
+import {FilmsSelector} from 'src/store/films/selectors';
 
 
 export function MyList() {
-  const {favoriteFilms} = useAppSelector((state) => state);
+  const favoriteFilms = useAppSelector(FilmsSelector.favorite);
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchFavoriteFilms());

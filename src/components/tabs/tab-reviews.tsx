@@ -1,24 +1,25 @@
 import {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {format} from 'date-fns';
-import {useAppDispatch, useAppSelector} from 'src/store';
-import {fetchFilmComments} from 'src/store/api';
+import {fetchFilmComments} from 'src/store/film/api';
+import {useAppDispatch, useAppSelector} from 'src/store/hooks';
+import {FilmSelector} from 'src/store/film/selectors';
 
 
 export function TabReviews() {
   const {id = ''} = useParams();
-  const filmsComments = useAppSelector((state) => state.filmsComments);
+  const filmComments = useAppSelector(FilmSelector.comments);
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchFilmComments(id));
   }, [id, dispatch]);
-  if (!filmsComments) {
+  if (!filmComments) {
     return null;
   }
   return (
     <div className="film-card__reviews film-card__row">
       <div className="film-card__reviews-col">
-        {filmsComments.map((review) => {
+        {filmComments.map((review) => {
           const {
             comment,
             user,

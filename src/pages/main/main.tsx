@@ -8,15 +8,19 @@ import {FilmsList} from 'src/components/films-list';
 import {Spinner} from 'src/components/spinner';
 import {ReduxStateStatus} from 'src/constants';
 import {useFiltredFilms} from 'src/hooks';
-import {useAppDispatch, useAppSelector} from 'src/store';
-import {fetchFilms, fetchPromoFilm} from 'src/store/api';
+import {fetchFilms} from 'src/store/films/api';
+import {fetchPromoFilm} from 'src/store/film/api';
+import {useAppDispatch, useAppSelector} from 'src/store/hooks';
+import {FilmsSelector} from 'src/store/films/selectors';
+import {FilmSelector} from 'src/store/film/selectors';
 
 
 export function Main() {
   const dispatch = useAppDispatch();
   const {enqueueSnackbar} = useSnackbar();
   const [loading, setLoading] = useState(false);
-  const {films, promoFilm} = useAppSelector((state) => state);
+  const films = useAppSelector(FilmsSelector.list);
+  const promoFilm = useAppSelector(FilmSelector.promo);
   useEffect(() => {
     setLoading(true);
     dispatch(fetchFilms())

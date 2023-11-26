@@ -1,6 +1,5 @@
 import {ChangeEvent, FormEvent, Fragment, useCallback, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import {useSnackbar} from 'notistack';
 import {postComments} from 'src/store/film/api';
 import {ReduxStateStatus, RoutePathname} from 'src/constants';
 
@@ -18,7 +17,6 @@ export function ReviewForm(props: Props) {
   const {filmId} = props;
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const {enqueueSnackbar} = useSnackbar();
   const [formData, setFormData] = useState({
     rating: '',
     comment: ''
@@ -35,17 +33,12 @@ export function ReviewForm(props: Props) {
     const {rating, comment} = formData;
     dispatch(postComments({comment, rating: Number(rating), filmId}))
       .then((res) => {
-        if (res.meta.requestStatus === ReduxStateStatus.rejected) {
-          enqueueSnackbar(
-            'Не удалось отправить комментарий',
-            {variant: 'error'}
-          );
-        } else {
+        if (res.meta.requestStatus !== ReduxStateStatus.rejected) {
           navigate(`/${RoutePathname.films}/${filmId}#reviews`);
         }
         return null;
       });
-  }, [dispatch, navigate, enqueueSnackbar, filmId, formData]);
+  }, [dispatch, navigate, filmId, formData]);
   return (
     <form className="add-review__form" onSubmit={handleSubmit}>
       <div className="rating">

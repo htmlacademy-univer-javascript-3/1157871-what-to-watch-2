@@ -6,7 +6,6 @@ import {MyListButton, PlayButton} from 'src/components/buttons';
 import {ListOfGenres} from 'src/components/list-of-genres';
 import {FilmsList} from 'src/components/films-list';
 import {Spinner} from 'src/components/spinner';
-import {ReduxStateStatus} from 'src/constants';
 import {useFiltredFilms} from 'src/hooks';
 import {fetchFilms} from 'src/store/films/api';
 import {fetchPromoFilm} from 'src/store/film/api';
@@ -24,15 +23,6 @@ export function Main() {
   useEffect(() => {
     setLoading(true);
     dispatch(fetchFilms())
-      .then((res) => {
-        if (res.meta.requestStatus === ReduxStateStatus.rejected) {
-          enqueueSnackbar(
-            'Не удалось загрузить список фильмов',
-            {variant: 'error'}
-          );
-        }
-        return null;
-      })
       .finally(() => {
         setLoading(false);
       });
@@ -41,7 +31,15 @@ export function Main() {
   const filtredFilms = useFiltredFilms();
   let filmPromoContent = null;
   if (promoFilm) {
-    const {name, genre, released, backgroundImage, posterImage} = promoFilm;
+    const {
+      name,
+      genre,
+      released,
+      backgroundImage,
+      posterImage,
+      videoLink,
+      id
+    } = promoFilm;
     filmPromoContent = (
       <section className="film-card">
         <div className="film-card__bg">
@@ -61,8 +59,8 @@ export function Main() {
                 <span className="film-card__year">{released}</span>
               </p>
               <div className="film-card__buttons">
-                <PlayButton/>
-                <MyListButton/>
+                <PlayButton videoLink={videoLink}/>
+                <MyListButton filmId={id}/>
               </div>
             </div>
           </div>

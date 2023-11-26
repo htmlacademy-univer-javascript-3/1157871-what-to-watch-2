@@ -1,8 +1,9 @@
+import {enqueueSnackbar} from 'notistack';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AxiosInstance} from 'axios';
-import {TComment, TCommentRequest, TFilm, TFilmCard, TFilmPromo, TUser} from 'src/types';
+import {TComment, TCommentRequest, TFilm, TFilmCard, TFilmPromo} from 'src/types';
 import {AuthorizationStatus} from 'src/constants';
-import {getSavedToken, saveToken} from 'src/token';
+import {getSavedToken} from 'src/token';
 import {updateAuthorizationStatus} from '../authorization/action';
 import {AppDispatch, State} from '../types';
 import {updateFilm, updateFilmComments, updateFilmsSimilar, updatePromoFilm} from './action';
@@ -14,9 +15,14 @@ export const fetchPromoFilm = createAsyncThunk<void, undefined, {
   extra: AxiosInstance
 }>(
   'film/fetchPromo',
-  async (_arg, {dispatch, extra: api}) => {
-    const {data: film} = await api.get<TFilmPromo>('/promo');
-    dispatch(updatePromoFilm(film));
+  async (_arg, {rejectWithValue, dispatch, extra: api}) => {
+    try {
+      const {data: film} = await api.get<TFilmPromo>('/promo');
+      dispatch(updatePromoFilm(film));
+    } catch (e) {
+      enqueueSnackbar('Failed to load promo film', {variant: 'error'});
+      return rejectWithValue(e);
+    }
   },
 );
 
@@ -39,8 +45,12 @@ export const fetchFilmSimilar = createAsyncThunk<void, string, {
 }>(
   'film/fetchSimilar',
   async (arg, {dispatch, extra: api}) => {
-    const {data: films} = await api.get<TFilmCard[]>(`/films/${arg}/similar`);
-    dispatch(updateFilmsSimilar(films));
+    try {
+      const {data: films} = await api.get<TFilmCard[]>(`/films/${arg}/similar`);
+      dispatch(updateFilmsSimilar(films));
+    } catch (_e) {
+      enqueueSnackbar('Failed to load similar films', {variant: 'error'});
+    }
   },
 );
 
@@ -51,8 +61,12 @@ export const fetchFilmComments = createAsyncThunk<void, string, {
 }>(
   'film/fetchComments',
   async (arg, {dispatch, extra: api}) => {
-    const {data: comments} = await api.get<TComment[]>(`/comments/${arg}`);
-    dispatch(updateFilmComments(comments));
+    try {
+      const {data: comments} = await api.get<TComment[]>(`/comments/${arg}`);
+      dispatch(updateFilmComments(comments));
+    } catch (_e) {
+      enqueueSnackbar('Failed to load film comments', {variant: 'error'});
+    }
   },
 );
 
@@ -62,15 +76,19 @@ export const postComments = createAsyncThunk<void, TCommentRequest, {
   extra: AxiosInstance
 }>(
   'film/postComments',
-  async (arg, {dispatch, extra: api}) => {
+  async (arg, {rejectWithValue, dispatch, extra: api}) => {
     const {filmId, comment, rating} = arg;
     const token = getSavedToken();
-    const {data} = await api.post<TUser>(
-      `/comments/${filmId}`,
-      {comment, rating},
-      {headers: {'X-Token': token}}
-    );
-    saveToken(data.token);
-    dispatch(updateAuthorizationStatus(AuthorizationStatus.authorized));
+    try {
+      await api.post<TComment>(
+        `/comments/${filmId}`,
+        {comment, rating},
+        {headers: {'X-Token': token}}
+      );
+      dispatch(updateAuthorizationStatus(AuthorizationStatus.authorized));
+    } catch (e) {
+      enqueueSnackbar('Failed to post comment', {variant: 'error'});
+      return rejectWithValue(e);
+    }
   },
 );

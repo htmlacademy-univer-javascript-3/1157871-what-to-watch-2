@@ -1,6 +1,5 @@
 import {JSX, useCallback} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
-import {useSnackbar} from 'notistack';
 import {AuthorizationStatus, ReduxStateStatus, RoutePathname} from 'src/constants';
 import {fetchLogout} from 'src/store/authorization/api';
 import {useAppDispatch, useAppSelector} from 'src/store/hooks';
@@ -14,24 +13,21 @@ type Props = {
 export function Header(props: Props) {
   const {breadcrumbs} = props;
   const navigate = useNavigate();
-  const {enqueueSnackbar} = useSnackbar();
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector(AuthorizationSelector.status);
   const isAuthorized = authorizationStatus === AuthorizationStatus.authorized;
   const handleLogout = useCallback(() => {
     dispatch(fetchLogout()).then((res) => {
-      if (res.meta.requestStatus === ReduxStateStatus.rejected) {
-        enqueueSnackbar(
-          'Не удалось выйти',
-          {variant: 'error'}
-        );
-      } else {
+      if (res.meta.requestStatus !== ReduxStateStatus.rejected) {
         navigate(RoutePathname.main);
       }
     });
-  }, [navigate, dispatch, enqueueSnackbar]);
+  }, [navigate, dispatch]);
   const handleLogin = useCallback(() => {
     navigate(`/${RoutePathname.login}`);
+  }, [navigate]);
+  const handleAvatarClick = useCallback(() => {
+    navigate(`/${RoutePathname.myList}`);
   }, [navigate]);
   return (
     <header className="page-header film-card__head">
@@ -44,11 +40,13 @@ export function Header(props: Props) {
       </div>
       {breadcrumbs}
       <ul className="user-block">
-        <li className="user-block__item">
-          <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-          </div>
-        </li>
+        {isAuthorized && (
+          <li className="user-block__item">
+            <div className="user-block__avatar" onClick={handleAvatarClick}>
+              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
+            </div>
+          </li>
+        )}
         <li className="user-block__item">
           {isAuthorized && (
             <div className="user-block__link" onClick={handleLogout}>

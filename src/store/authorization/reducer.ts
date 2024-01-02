@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {updateAuthorizationStatus} from './action';
+import {updateAuthorizationStatus} from './actions';
 import {State} from './types';
 
 

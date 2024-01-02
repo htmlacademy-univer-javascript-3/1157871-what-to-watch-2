@@ -4,9 +4,9 @@ import {AxiosInstance} from 'axios';
 import {TComment, TCommentRequest, TFilm, TFilmCard, TFilmPromo} from 'src/types';
 import {AuthorizationStatus} from 'src/constants';
 import {getSavedToken} from 'src/token';
-import {updateAuthorizationStatus} from '../authorization/action';
+import {updateAuthorizationStatus} from '../authorization/actions';
 import {AppDispatch, State} from '../types';
-import {updateFilm, updateFilmComments, updateFilmsSimilar, updatePromoFilm} from './action';
+import {updateFilm, updateFilmComments, updateFilmsSimilar, updatePromoFilm} from './actions';
 
 
 export const fetchPromoFilm = createAsyncThunk<void, undefined, {

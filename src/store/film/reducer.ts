@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {updateFilm, updateFilmComments, updateFilmsSimilar, updatePromoFilm} from './action';
+import {updateFilm, updateFilmComments, updateFilmsSimilar, updatePromoFilm} from './actions';
 import {State} from './types';
 
 

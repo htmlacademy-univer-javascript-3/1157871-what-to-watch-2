@@ -1,6 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {GENRE_FOR_ALL_FILMS} from 'src/constants';
-import {changeGenre} from './action';
+import {changeGenre} from './actions';
 import {State} from './types';
 
 

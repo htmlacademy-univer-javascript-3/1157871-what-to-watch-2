@@ -1,5 +1,5 @@
 import {useCallback, useMemo} from 'react';
-import {changeGenre} from 'src/store/genre/action';
+import {changeGenre} from 'src/store/genre/actions';
 import {GENRE_FOR_ALL_FILMS} from 'src/constants';
 import {TFilmCard} from 'src/types';
 import {useAppDispatch, useAppSelector} from 'src/store/hooks';

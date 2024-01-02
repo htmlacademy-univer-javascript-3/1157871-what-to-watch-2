@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {updateFavoriteFilms, updateFilms} from './action';
+import {updateFavoriteFilms, updateFilms} from './actions';
 import {State} from './types';
 
 

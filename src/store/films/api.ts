@@ -4,7 +4,7 @@ import {AxiosInstance} from 'axios';
 import {getSavedToken} from 'src/token';
 import {TFilm, TFilmCard} from 'src/types';
 import {AppDispatch, State} from '../types';
-import {updateFavoriteFilms, updateFilms} from './action';
+import {updateFavoriteFilms, updateFilms} from './actions';
 import {FilmStatus} from 'src/constants';
 
 

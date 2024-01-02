@@ -5,7 +5,7 @@ import {deleteToken, getSavedToken, saveToken} from 'src/token';
 import {AuthorizationStatus} from 'src/constants';
 import {TLoginRequest, TUser} from 'src/types';
 import {AppDispatch, State} from '../types';
-import {updateAuthorizationStatus} from './action';
+import {updateAuthorizationStatus} from './actions';
 
 
 export const getLogin = createAsyncThunk<void, undefined, {

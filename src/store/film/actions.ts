@@ -2,7 +2,7 @@ import {createAction} from '@reduxjs/toolkit';
 import {TComment, TFilm, TFilmCard, TFilmPromo} from 'src/types';
 
 
-const Action = {
+const Actions = {
   UPDATE_FILM_PROMO: 'film/updatePromo',
   UPDATE_FILM: 'film/update',
   UPDATE_FILM_SIMILAR: 'film/updateSimilar',
@@ -10,21 +10,21 @@ const Action = {
 } as const;
 
 export const updatePromoFilm = createAction(
-  Action.UPDATE_FILM_PROMO,
+  Actions.UPDATE_FILM_PROMO,
   (value: TFilmPromo): { payload: TFilmPromo } => ({
     payload: value
   })
 );
 
 export const updateFilm = createAction(
-  Action.UPDATE_FILM,
+  Actions.UPDATE_FILM,
   (value: TFilm): { payload: TFilm } => ({
     payload: value
   })
 );
 
 export const updateFilmsSimilar = createAction(
-  Action.UPDATE_FILM_SIMILAR,
+  Actions.UPDATE_FILM_SIMILAR,
   (value: TFilmCard[]): { payload: TFilmCard[] } => ({
     payload: value
   })
@@ -32,7 +32,7 @@ export const updateFilmsSimilar = createAction(
 
 
 export const updateFilmComments = createAction(
-  Action.UPDATE_FILM_COMMENTS,
+  Actions.UPDATE_FILM_COMMENTS,
   (value: TComment[]): { payload: TComment[] } => ({
     payload: value
   })

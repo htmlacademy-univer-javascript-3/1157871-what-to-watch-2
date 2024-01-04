@@ -1,11 +1,11 @@
 import {BrowserRouter} from 'react-router-dom';
-import {render} from '@testing-library/react';
-import {ScrollToTop} from './scroll-to-top';
-import {createAPI} from 'src/api.ts';
 import thunk from 'redux-thunk';
-import {configureMockStore} from '@jedmao/redux-mock-store';
-import {State} from 'src/store/types.ts';
 import {Provider} from 'react-redux';
+import {configureMockStore} from '@jedmao/redux-mock-store';
+import {render} from '@testing-library/react';
+import {createAPI} from 'src/api';
+import {State} from 'src/store/types';
+import {ScrollToTop} from './scroll-to-top';
 
 
 const api = createAPI();

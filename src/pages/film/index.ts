@@ -1,1 +1,1 @@
-export {Film} from './film.tsx';
+export {Film} from './film';

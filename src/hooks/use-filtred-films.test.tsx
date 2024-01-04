@@ -1,14 +1,14 @@
-import {renderHook} from '@testing-library/react';
-import {useFiltredFilms} from './use-filtred-films';
-import {createAPI} from 'src/api.ts';
-import thunk from 'redux-thunk';
-import {configureMockStore} from '@jedmao/redux-mock-store';
-import {State} from 'src/store/types.ts';
 import {JSX} from 'react';
+import thunk from 'redux-thunk';
+import {State} from 'src/store/types';
 import {Provider} from 'react-redux';
+import {renderHook} from '@testing-library/react';
+import {configureMockStore} from '@jedmao/redux-mock-store';
+import {createAPI} from 'src/api';
 import {BrowserRouter} from 'react-router-dom';
 import {GENRE_FOR_ALL_FILMS} from 'src/constants';
 import {TFilmCard} from 'src/types';
+import {useFiltredFilms} from './use-filtred-films';
 
 
 const mockFilms: TFilmCard[] = [

@@ -1,1 +1,1 @@
-export {ListOfGenres} from './list-of-genres.tsx';
+export {ListOfGenres} from './list-of-genres';

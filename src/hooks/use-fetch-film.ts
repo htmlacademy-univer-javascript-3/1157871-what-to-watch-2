@@ -1,8 +1,9 @@
 import {useEffect} from 'react';
-import {fetchFilm, fetchFilmSimilar} from 'src/store/film/api';
-import {ReduxStateStatus, RoutePathname} from 'src/constants.ts';
 import {useNavigate} from 'react-router-dom';
+import {fetchFilm, fetchFilmSimilar} from 'src/store/film/api';
+import {ReduxStateStatus, RoutePathname} from 'src/constants';
 import {useAppDispatch} from 'src/store/hooks';
+
 
 export function useFetchFilm(id: string) {
   const navigate = useNavigate();

@@ -21,6 +21,7 @@ export function VideoPlayer(props: Props) {
 
   return (
     <video
+      data-testid="video-player"
       ref={videoRef}
       src={src}
       poster={preview}
@@ -28,7 +29,7 @@ export function VideoPlayer(props: Props) {
       loop
       muted
     >
-      <source src={src} type="video/mp4" />
+      <source src={src} type="video/mp4"/>
     </video>
   );
 }

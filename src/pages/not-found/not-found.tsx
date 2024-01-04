@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import {RoutePathname} from 'src/constants.ts';
+import {RoutePathname} from 'src/constants';
 import './not-found.css';
 
 

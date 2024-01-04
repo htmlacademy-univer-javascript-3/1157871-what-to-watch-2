@@ -1,1 +1,1 @@
-export {PrivateRoute} from './private-route.tsx';
+export {PrivateRoute} from './private-route';

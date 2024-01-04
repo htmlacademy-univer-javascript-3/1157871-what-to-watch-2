@@ -1,12 +1,12 @@
-import {render} from '@testing-library/react';
-import {Tabs} from './tabs';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
-import {createAPI} from 'src/api.ts';
 import thunk from 'redux-thunk';
+import {render} from '@testing-library/react';
 import {configureMockStore} from '@jedmao/redux-mock-store';
-import {State} from 'src/store/types.ts';
-import {TFilm} from 'src/types.ts';
+import {createAPI} from 'src/api';
+import {State} from 'src/store/types';
+import {TFilm} from 'src/types';
+import {Tabs} from './tabs';
 
 
 const api = createAPI();

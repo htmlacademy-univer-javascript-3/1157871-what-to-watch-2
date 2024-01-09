@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import {useSnackbar} from 'notistack';
 import {Header} from 'src/components/header';
 import {Footer} from 'src/components/footer';
-import {MyListButton, PlayButton} from 'src/components/buttons';
+import {MyListButton, PlayButton} from 'src/components/button';
 import {ListOfGenres} from 'src/components/list-of-genres';
 import {FilmsList} from 'src/components/films-list';
 import {Spinner} from 'src/components/spinner';

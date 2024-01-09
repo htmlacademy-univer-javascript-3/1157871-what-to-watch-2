@@ -3,7 +3,7 @@ import {Link, useParams} from 'react-router-dom';
 import {Header} from 'src/components/header';
 import {Footer} from 'src/components/footer';
 import {FilmsList} from 'src/components/films-list';
-import {MyListButton, PlayButton} from 'src/components/buttons';
+import {MyListButton, PlayButton} from 'src/components/button';
 import {AuthorizationStatus, RoutePathname} from 'src/constants';
 import {Tabs} from 'src/components/tabs';
 import {fetchFilmSimilar} from 'src/store/film/api';
